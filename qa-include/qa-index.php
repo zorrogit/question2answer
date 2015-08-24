@@ -184,6 +184,7 @@
 		}
 	}
 
+	require_once QA_INCLUDE_DIR.'/app/users.php';
 	$userid=qa_get_logged_in_userid(); if ($requestlower != 'login' &&  $requestlower != 'register' && !isset($userid)) qa_redirect('login'); //zorro, enforce login on all pages
 
 
