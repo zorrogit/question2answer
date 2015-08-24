@@ -25,7 +25,7 @@
 		exit;
 	}
 
-	@define('QA_MIN_PASSWORD_LEN', 4);
+	@define('QA_MIN_PASSWORD_LEN', 8);
 	@define('QA_NEW_PASSWORD_LEN', 8); // when resetting password
 
 
