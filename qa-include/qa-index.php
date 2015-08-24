@@ -184,4 +184,7 @@
 		}
 	}
 
+	$userid=qa_get_logged_in_userid(); if ($requestlower != 'login' &&  $requestlower != 'register' && !isset($userid)) qa_redirect('login'); //zorro, enforce login on all pages
+
+
 	qa_report_process_stage('shutdown');

@@ -89,11 +89,13 @@
 			}
 			else {
 				// core validation
+				list($inhandle, $domain) = split('@', $inemail); //zorro, enforce username
 				$errors = array_merge(
 					qa_handle_email_filter($inhandle, $inemail),
 					qa_password_validate($inpassword)
 				);
-
+				require_once QA_INCLUDE_DIR.'../company-config.php'; //do NOT check in this file
+				if ($domain != EMAIL_DOMAIN)  $errors['email'] = 'Invalid email domain: ' . $domain; //zorro
 				// T&Cs validation
 				if ($show_terms && !$interms)
 					$errors['terms'] = qa_lang_html('users/terms_not_accepted');
@@ -148,13 +150,14 @@
 		'style' => 'tall',
 
 		'fields' => array(
+			/* //zorro : user name will be parsed from email
 			'handle' => array(
 				'label' => qa_lang_html('users/handle_label'),
 				'tags' => 'name="handle" id="handle" dir="auto"',
 				'value' => qa_html(@$inhandle),
 				'error' => qa_html(@$errors['handle']),
 			),
-
+			*/
 			'password' => array(
 				'type' => 'password',
 				'label' => qa_lang_html('users/password_label'),
