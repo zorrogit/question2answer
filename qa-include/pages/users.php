@@ -62,11 +62,12 @@
 					$user['avatarblobid'], $user['avatarwidth'], $user['avatarheight'], qa_opt('avatar_users_size'), true);
 			}
 
+      $userprofile=qa_db_select_with_pending( qa_db_user_profile_selectspec($user['userid'], true));
 			// avatar and handle now listed separately for use in themes
 			$qa_content['ranking']['items'][] = array(
 				'avatar' => $avatarhtml,
 				'label' => $usershtml[$user['userid']],
-				'label' => $user['email'],
+				'label' => $userprofile['name'] .' '. $user['email'],
 				'score' => qa_html(number_format($user['points'])),
 				'raw' => $user,
 			);

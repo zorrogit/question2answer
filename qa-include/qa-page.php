@@ -680,9 +680,10 @@
 				'<img src="'.qa_html(is_numeric(strpos($logourl, '://')) ? $logourl : qa_path_to_root().$logourl).'"'.
 				($logowidth ? (' width="'.$logowidth.'"') : '').($logoheight ? (' height="'.$logoheight.'"') : '').
 				' border="0" alt="'.qa_html(qa_opt('site_title')).'"/></a>';
-		else
-			$qa_content['logo']='<a href="'.qa_path_html('').'" class="qa-logo-link">'.qa_html(qa_opt('site_title')).'</a>';
-
+		else {
+			$site_title_secure = qa_is_logged_in() ? qa_opt('site_title') : 'Please Login or Register';
+			$qa_content['logo']='<a href="'.qa_path_html('').'" class="qa-logo-link">'.qa_html($site_title_secure).'</a>';
+		}
 		$topath=qa_get('to'); // lets user switch between login and register without losing destination page
 
 		$userlinks=qa_get_login_links(qa_path_to_root(), isset($topath) ? $topath : qa_path($request, $_GET, ''));
